@@ -1,13 +1,13 @@
 version: 2
 
 models:
-  - name: tokens_worldchain_base_transfers
+  - name: tokens_bob_base_transfers
     meta:
-      blockchain: worldchain
+      blockchain: bob
       sector: tokens
       contributors: hosuke
     config:
-      tags: ['tokens','transfers', 'worldchain']
+      tags: ['tokens','transfers', 'bob']
     description: >
       Token transfers
     data_tests:
@@ -49,13 +49,13 @@ models:
       - name: amount_raw
         description: "The raw amount of the transfer"
 
-  - name: tokens_worldchain_transfers
+  - name: tokens_bob_transfers
     meta:
-      blockchain: worldchain
+      blockchain: bob
       sector: tokens
       contributors: hosuke
     config:
-      tags: ['tokens','transfers', 'worldchain']
+      tags: ['tokens','transfers', 'bob']
     description: >
       Token transfers
     data_tests:
@@ -103,13 +103,13 @@ models:
       - name: price_usd
         description: "The USD price used to calculate the amount_usd"
       - name: amount_usd
-        description: "The USD amount of the transfer"
-
-  - name: tokens_worldchain_net_transfers_daily
+        description: "The USD amount of the transfer" 
+  
+  - name: tokens_bob_net_transfers_daily
     meta:
-      blockchain: worldchain
+      blockchain: bob
       sector: tokens
-      contributors: 0xRob, krishhh
+      contributors: hosuke
     config:
       tags: ['tokens', 'net_transfers', 'daily']
     description: "Total transfer amount per day"
@@ -119,11 +119,11 @@ models:
             - blockchain
             - block_date
 
-  - name: tokens_worldchain_net_transfers_daily_asset
+  - name: tokens_bob_net_transfers_daily_asset
     meta:
-      blockchain: worldchain
+      blockchain: bob
       sector: tokens
-      contributors: 0xRob, krishhh
+      contributors: hosuke
     config:
       tags: ['tokens', 'net_transfers']
     description: "Total transfer amount per day per asset"
@@ -133,93 +133,3 @@ models:
             - blockchain
             - block_date
             - contract_address
-  - name: tokens_worldchain_balances
-    meta:
-      blockchain: worldchain
-      sector: tokens
-      contributors: aalan3
-    config:
-      tags: ['tokens','balances', 'worldchain']
-    description: "Token balances enriched"
-    columns:
-      - name: block_date
-      - name: block_number
-      - name: type
-      - name: token_address
-      - name: wallet_address
-      - name: balance_raw
-      - name: balance
-      - name: balance_usd
-      - name: price_rate
-      - name: symbol
-      - name: decimals
-      - name: collection_name
-
-  - name: tokens_worldchain_balances_daily_agg_base
-    meta:
-      blockchain: worldchain
-      sector: tokens
-      contributors: aalan3
-    config:
-      tags: ['tokens','balances', 'worldchain']
-    description: "Token balances daily worldchain"
-    data_tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - day
-            - unique_key
-    columns:
-          - name: day
-          - name: block_number
-          - name: block_time
-          - name: contract_address
-          - name: address
-          - name: token_id
-          - name: amount
-          - name: type
-
-  - name: tokens_worldchain_balances_daily_agg
-    meta:
-      blockchain: worldchain
-      sector: tokens
-      contributors: aalan3
-    config:
-      tags: ['tokens','balances', 'worldchain']
-    description: "Token balances daily enriched"
-    columns:
-      - name: day
-      - name: block_date
-      - name: block_number
-      - name: type
-      - name: token_address
-      - name: wallet_address
-      - name: balance_raw
-      - name: balance
-      - name: balance_usd
-      - name: price_rate
-      - name: symbol
-      - name: decimals
-      - name: collection_name
-
-  - name: tokens_worldchain_balances_daily
-    meta:
-      blockchain: worldchain
-      sector: tokens
-      contributors: 0xRob
-    config:
-      tags: [ 'tokens','balances', 'worldchain' ]
-    description: "Token balances daily enriched"
-    columns:
-      - name: day
-      - name: block_date
-      - name: block_number
-      - name: type
-      - name: token_address
-      - name: wallet_address
-      - name: balance_raw
-      - name: balance
-      - name: balance_usd
-      - name: price_rate
-      - name: symbol
-      - name: decimals
-      - name: collection_name
